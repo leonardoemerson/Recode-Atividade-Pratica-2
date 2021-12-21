@@ -1,7 +1,7 @@
 # Recode-Atividade-Pratica-2
  Segunda atividade prática do curso.
- O projeto está organizado da seguinte forma:
-	Pasta Front-End - Contém duas subpastas:
+ O projeto está organizado da seguinte forma:<br />
+	<p>Pasta Front-End - Contém duas subpastas:</p><br />
 		Pasta 1) projeto-html-css: Contém as páginas do site criadas com html e css.
 		Pasta 2) projeto-html-css-bootstrap: Contém de forma adicional as páginas do site criadas com html, css e bootstrap.
 	Pasta Back-End - Contém uma subpasta:
