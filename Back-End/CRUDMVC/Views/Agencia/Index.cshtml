@@ -1,0 +1,107 @@
+﻿@model CRUDMVC.Models.Agencia;
+@{
+    ViewData["Title"] = "Agencia";
+    var agencias = ViewData["agencias"] as List<Agencia>;
+}
+
+<h1 style="color: #3b7687;">Gerenciamento das Agências</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 style="color: #3b7687;">Agências cadastrados</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>idAgência</th>
+                        <th>CNPJ</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var agencia in agencias)
+                        {
+                            <tr>
+                                <td>@agencia.idAgencia</td>
+                                <td>@agencia.cnpj</td>
+                                <td>@agencia.endereco</td>
+                                <td>@agencia.telefone</td>
+                                <td>@agencia.email</td>
+                                <td>
+                                    <form asp-controller="Agencia" asp-action="Deletar">
+                                        <button class="btn btn-danger" type="submit">x deletar</button>
+                                        <input asp-for="idAgencia" style="visibility:hidden;" type="text" value="@agencia.idAgencia" />
+                                    </form>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <h2 style="color: #3b7687;">Cadastrar</h2>
+    <form asp-action="Index">
+        <div class="col">
+            <div class="form-group col-md-6">
+                <label for="">CNPJ</label>
+                <input asp-for="cnpj" type="text" class="form-control" id="" placeholder="Digite o CNPJ da agência">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Endereço</label>
+                <input asp-for="endereco" type="text" class="form-control" id="" placeholder="Digite o endereço da agência">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Telefone</label>
+                <input asp-for="telefone" type="text" class="form-control" id="" placeholder="Digite o telefone da agência">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Email</label>
+                <input asp-for="email" type="text" class="form-control" id="" placeholder="Digite o email da agência">
+            </div>
+            <button type="submit" class="btn btn-primary">Incluir</button>
+        </div>
+
+    </form>
+
+    <h2 style="color: #3b7687;">Atualizar</h2>
+    <form asp-controller="Agencia" asp-action="Atualizar">
+        <div class="col">
+            <div class="form-group col-md-6">
+                <label for="">Código</label>
+                <select class="custom-select" asp-for="idAgencia">
+                    <option selected>-- Selecione um código</option>
+                    @{
+                        foreach (var agencia in agencias)
+                        {
+                            <option>@agencia.idAgencia</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Novo CNPJ</label>
+                <input asp-for="cnpj" type="text" class="form-control" id="" placeholder="Digite o novo CNPJ da agência">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo endereço</label>
+                <input asp-for="endereco" type="text" class="form-control" id="" placeholder="Digite o novo endereço da agência">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo telefone</label>
+                <input asp-for="telefone" type="text" class="form-control" id="" placeholder="Digite o novo telefone da agência">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo email</label>
+                <input asp-for="email" type="text" class="form-control" id="" placeholder="Digite o novo email da agência">
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+
+    </form>
+</div>

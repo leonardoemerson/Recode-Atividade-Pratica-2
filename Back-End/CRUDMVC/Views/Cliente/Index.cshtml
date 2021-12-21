@@ -1,0 +1,108 @@
+﻿@model CRUDMVC.Models.Cliente;
+
+@{
+    ViewData["Title"] = "Cliente";
+    var clientes = ViewData["clientes"] as List<Cliente>;
+}
+
+<h1 style="color: #3b7687;">Gerenciamento de clientes</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 style="color: #3b7687;">Clientes cadastrados</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>idCliente</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>RG</th>
+                        <th>Endereço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var cliente in clientes)
+                        {
+                            <tr>
+                                <td>@cliente.idCliente</td>
+                                <td>@cliente.nome</td>
+                                <td>@cliente.cpf</td>
+                                <td>@cliente.rg</td>
+                                <td>@cliente.endereco</td>
+                                <td>
+                                    <form asp-controller="Cliente" asp-action="Deletar">
+                                        <button class="btn btn-danger" type="submit">x deletar</button>
+                                        <input asp-for="idCliente" style="visibility:hidden;" type="text" value="@cliente.idCliente" />
+                                    </form>
+                                </td>
+                            </tr>
+
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <h2 style="color: #3b7687;">Cadastrar</h2>
+    <form asp-action="Index">
+        <div class="col">
+            <div class="form-group col-md-6">
+                <label for="">Nome completo</label>
+                <input asp-for="nome" type="text" class="form-control" id="" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">CPF</label>
+                <input asp-for="cpf" type="text" class="form-control" id="" placeholder="Digite seu CPF">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">RG</label>
+                <input asp-for="rg" type="text" class="form-control" id="" placeholder="Digite seu RG">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Endereço</label>
+                <input asp-for="endereco" type="text" class="form-control" id="" placeholder="Digite seu endereço">
+            </div>
+            <button type="submit" class="btn btn-primary">Incluir</button>
+        </div>
+
+    </form>
+
+    <h2 style="color: #3b7687;">Atualizar</h2>
+    <form asp-controller="Cliente" asp-action="Atualizar">
+        <div class="col">
+            <div class="form-group col-md-6">
+                <label for="">Código do cliente</label>
+                <select class="custom-select" asp-for="idCliente">
+                    <option selected>-- Selecione um código</option>
+                    @{ 
+                        foreach(var cliente in clientes)
+                        {
+                            <option>@cliente.idCliente</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Novo nome</label>
+                <input asp-for="nome" type="text" class="form-control" id="" placeholder="Digite o novo nome">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo CPF</label>
+                <input asp-for="cpf" type="text" class="form-control" id="" placeholder="Digite o novo CPF">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo RG</label>
+                <input asp-for="rg" type="text" class="form-control" id="" placeholder="Digite o novo RG">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo endereço</label>
+                <input asp-for="endereco" type="text" class="form-control" id="" placeholder="Digite o novo endereço">
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+
+    </form>
+</div>

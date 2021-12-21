@@ -1,0 +1,108 @@
+﻿@model CRUDMVC.Models.Destino;
+
+@{
+    ViewData["Title"] = "Destino";
+    var destinos = ViewData["destinos"] as List<Destino>;
+}
+
+<h1 style="color: #3b7687;">Gerenciamento de Destinos</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 style="color: #3b7687;">Destinos cadastrados</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>idDestino</th>
+                        <th>Endereço</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Quantidade de vagas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var destino in destinos)
+                        {
+                            <tr>
+                                <td>@destino.idDestino</td>
+                                <td>@destino.endereco</td>
+                                <td>@destino.nome</td>
+                                <td>@destino.preco</td>
+                                <td>@destino.qtdVagas</td>
+                                <td>
+                                    <form asp-controller="Destino" asp-action="Deletar">
+                                        <button class="btn btn-danger" type="submit">x deletar</button>
+                                        <input asp-for="idDestino" style="visibility:hidden;" type="text" value="@destino.idDestino" />
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <h2 style="color: #3b7687;">Cadastrar</h2>
+    <form asp-action="Index">
+        <div class="col">
+            <div class="form-group col-md-6">
+                <label for="">Endereço</label>
+                <input asp-for="endereco" type="text" class="form-control" id="" placeholder="Digite o endereço do destino">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Nome</label>
+                <input asp-for="nome" type="text" class="form-control" id="" placeholder="Digite o nome do destino">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Preço</label>
+                <input asp-for="preco" type="text" class="form-control" id="" placeholder="Digite o preço do destino">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Quantidade de Vagas</label>
+                <input asp-for="qtdVagas" type="text" class="form-control" id="" placeholder="Digite a quantidade de vagas para o destino">
+            </div>
+            <button type="submit" class="btn btn-primary">Incluir</button>
+        </div>
+
+    </form>
+
+    <h2 style="color: #3b7687;">Atualizar</h2>
+    <form asp-controller="Destino" asp-action="Atualizar">
+        <div class="col">
+            <div class="form-group col-md-6">
+                <label for="">Código do destino</label>
+                <select class="custom-select" asp-for="idDestino">
+                    <option selected>-- Selecione um código</option>
+                    @{
+                        foreach (var destino in destinos)
+                        {
+                            <option>@destino.idDestino</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Novo endereço</label>
+                <input asp-for="endereco" type="text" class="form-control" id="" placeholder="Digite o endereço do destino">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo nome</label>
+                <input asp-for="nome" type="text" class="form-control" id="" placeholder="Digite o nome do destino">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Novo preço</label>
+                <input asp-for="preco" type="text" class="form-control" id="" placeholder="Digite o preço do destino">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="">Nova quantidade de Vagas</label>
+                <input asp-for="qtdVagas" type="text" class="form-control" id="" placeholder="Digite a quantidade de vagas para o destino">
+            </div>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+
+    </form>
+
+</div>
